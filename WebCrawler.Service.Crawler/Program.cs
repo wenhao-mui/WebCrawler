@@ -1,6 +1,12 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.Extensions.DependencyInjection;
+using WebCrawler.Service.Crawler.Services;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IHtmlParser, HtmlAgilityParser>();
+builder.Services.AddTransient<ISiteCrawler, SiteCrawler>();
+builder.Services.AddTransient<HttpClient>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
